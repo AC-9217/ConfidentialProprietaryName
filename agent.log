@@ -24,3 +24,13 @@
 2025-12-15 22:48:28,256 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
 2025-12-15 22:48:40,439 - agent.index.vector_store - INFO - Initializing VectorStore at /data1/private/renhaokai/Project/DuoMoTai/Experiment2/data/index
 2025-12-15 22:48:40,667 - agent.services.search_service - INFO - Searching for: 计算机视觉
+2025-12-15 22:52:08,227 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-15 22:52:19,162 - agent.index.vector_store - INFO - Initializing VectorStore at /data1/private/renhaokai/Project/DuoMoTai/Experiment2/data/index
+2025-12-15 22:52:19,411 - agent.services.paper_manager - INFO - Processing paper: AGRec.pdf
+2025-12-15 22:52:20,404 - agent.services.paper_manager - INFO - Indexed 73 chunks.
+2025-12-15 22:53:01,475 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-15 22:53:17,408 - agent.index.vector_store - INFO - Initializing VectorStore at /data1/private/renhaokai/Project/DuoMoTai/Experiment2/data/index
+2025-12-15 22:53:17,681 - agent.services.search_service - INFO - Searching for: 推荐算法
+2025-12-15 22:55:37,474 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-15 22:56:18,901 - agent.index.vector_store - INFO - Initializing VectorStore at /data1/private/renhaokai/Project/DuoMoTai/Experiment2/data/index
+2025-12-15 22:56:19,198 - agent.services.search_service - INFO - Searching for: lightGCN
