@@ -1,0 +1,13 @@
+torch
+torchvision
+sentence-transformers
+open_clip_torch
+chromadb
+pymupdf
+pillow
+tqdm
+pyyaml
+paddleocr
+qdrant-client
+opencv-python
+ollama
