@@ -45,3 +45,97 @@
 2025-12-17 17:16:49,696 - agent.models.image_embedder - INFO - Loading Image Embedder: ViT-B-32 (laion2b_s34b_b79k) on cuda
 2025-12-17 17:17:36,225 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
 2025-12-17 17:17:40,003 - agent.services.image_search - INFO - Searching images for: 红色的
+2025-12-17 20:50:48,731 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:51:15,533 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:51:35,825 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:51:36,166 - agent.services.paper_manager - INFO - Processing paper: CV_paper_01.pdf
+2025-12-17 20:51:36,670 - agent.services.paper_manager - INFO - Classified as: 目标检测
+2025-12-17 20:51:36,671 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\目标检测\CV_paper_01.pdf
+2025-12-17 20:51:36,758 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:51:57,227 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:52:02,881 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:52:03,090 - agent.services.paper_manager - INFO - Processing paper: CV_paper_02.pdf
+2025-12-17 20:52:03,267 - agent.services.paper_manager - INFO - Classified as: 图像分类
+2025-12-17 20:52:03,268 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\图像分类\CV_paper_02.pdf
+2025-12-17 20:52:03,322 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:53:07,577 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:53:13,068 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:53:13,291 - agent.services.paper_manager - INFO - Processing paper: CV_paper_03.pdf
+2025-12-17 20:53:13,485 - agent.services.paper_manager - INFO - Classified as: 物体识别
+2025-12-17 20:53:13,486 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\物体识别\CV_paper_03.pdf
+2025-12-17 20:53:13,547 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:54:16,401 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:54:23,660 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:54:23,881 - agent.services.paper_manager - INFO - Processing paper: NLP_paper_01.pdf
+2025-12-17 20:54:24,070 - agent.services.paper_manager - INFO - Classified as: 文本分类
+2025-12-17 20:54:24,071 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\文本分类\NLP_paper_01.pdf
+2025-12-17 20:54:24,124 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:54:37,246 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:54:42,762 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:54:42,977 - agent.services.paper_manager - INFO - Processing paper: NLP_paper_02.pdf
+2025-12-17 20:54:43,150 - agent.services.paper_manager - INFO - Classified as: 依存句法
+2025-12-17 20:54:43,151 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\依存句法\NLP_paper_02.pdf
+2025-12-17 20:54:43,206 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:54:59,439 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:55:05,880 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:55:06,101 - agent.services.paper_manager - INFO - Processing paper: NLP_paper_03.pdf
+2025-12-17 20:55:06,287 - agent.services.paper_manager - INFO - Classified as: 情感分析
+2025-12-17 20:55:06,289 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\情感分析\NLP_paper_03.pdf
+2025-12-17 20:55:06,346 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:55:21,335 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:55:27,731 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:55:27,947 - agent.services.paper_manager - INFO - Processing paper: RL_paper_01.pdf
+2025-12-17 20:55:28,131 - agent.services.paper_manager - INFO - Classified as: Q学习
+2025-12-17 20:55:28,132 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\Q学习\RL_paper_01.pdf
+2025-12-17 20:55:28,218 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:55:56,848 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:56:03,205 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:56:03,449 - agent.services.paper_manager - INFO - Processing paper: RL_paper_02.pdf
+2025-12-17 20:56:03,630 - agent.services.paper_manager - INFO - Classified as: Actor-Critic
+2025-12-17 20:56:03,631 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\Actor-Critic\RL_paper_02.pdf
+2025-12-17 20:56:03,685 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:56:23,980 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:56:30,670 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:56:30,884 - agent.services.paper_manager - INFO - Processing paper: RL_paper_03.pdf
+2025-12-17 20:56:31,061 - agent.services.paper_manager - INFO - Classified as: 时序差分
+2025-12-17 20:56:31,062 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\时序差分\RL_paper_03.pdf
+2025-12-17 20:56:31,114 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:56:44,422 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:56:49,744 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:56:49,963 - agent.services.paper_manager - INFO - Processing paper: DM_paper_01.pdf
+2025-12-17 20:56:50,154 - agent.services.paper_manager - INFO - Classified as: 市场篮分析
+2025-12-17 20:56:50,155 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\市场篮分析\DM_paper_01.pdf
+2025-12-17 20:56:50,224 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:57:03,020 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:57:09,448 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:57:09,661 - agent.services.paper_manager - INFO - Processing paper: DM_paper_02.pdf
+2025-12-17 20:57:09,847 - agent.services.paper_manager - INFO - Classified as: 聚类分析
+2025-12-17 20:57:09,849 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\聚类分析\DM_paper_02.pdf
+2025-12-17 20:57:09,906 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:57:22,934 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:57:30,327 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:57:30,535 - agent.services.paper_manager - INFO - Processing paper: DM_paper_03.pdf
+2025-12-17 20:57:30,721 - agent.services.paper_manager - INFO - Classified as: 离群点
+2025-12-17 20:57:30,722 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\离群点\DM_paper_03.pdf
+2025-12-17 20:57:30,776 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:57:50,339 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:57:56,601 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:57:56,846 - agent.services.paper_manager - INFO - Processing paper: ML_paper_01.pdf
+2025-12-17 20:57:57,034 - agent.services.paper_manager - INFO - Classified as: 监督学习
+2025-12-17 20:57:57,035 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\监督学习\ML_paper_01.pdf
+2025-12-17 20:57:57,089 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:58:10,062 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:58:16,477 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:58:16,691 - agent.services.paper_manager - INFO - Processing paper: ML_paper_02.pdf
+2025-12-17 20:58:16,871 - agent.services.paper_manager - INFO - Classified as: 无监督学习
+2025-12-17 20:58:16,872 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\无监督学习\ML_paper_02.pdf
+2025-12-17 20:58:16,926 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 20:58:29,708 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 20:58:35,848 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 20:58:36,058 - agent.services.paper_manager - INFO - Processing paper: ML_paper_03.pdf
+2025-12-17 20:58:36,237 - agent.services.paper_manager - INFO - Classified as: 偏差-方差
+2025-12-17 20:58:36,238 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\偏差-方差\ML_paper_03.pdf
+2025-12-17 20:58:36,294 - agent.services.paper_manager - INFO - Indexed 1 chunks.
+2025-12-17 21:01:47,806 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 21:01:55,804 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 21:01:56,018 - agent.services.search_service - INFO - Searching for: 让计算机处理人类语言的论文
