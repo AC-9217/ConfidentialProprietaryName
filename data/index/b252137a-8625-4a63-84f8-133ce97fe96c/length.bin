@@ -1,1 +1,14 @@
-nnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿnnnÿ
+ner iteration
+          - ``legacy`` (default): same as ``pr_norm``, but also changes the
+            meaning of `maxiter` to count inner iterations instead of restart
+            cycles.
+
+        This keyword has no effect if `callback` is not set.
+
+    Returns
+    -------
+    x : ndarray
+        The converged solution.
+    info : int
+        Provides convergence information:
+            0  : suc

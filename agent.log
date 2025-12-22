@@ -151,3 +151,29 @@
 2025-12-17 22:35:39,286 - agent.models.image_embedder - INFO - Loading Image Embedder: ViT-B-32 (laion2b_s34b_b79k) on cuda
 2025-12-17 22:35:42,544 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
 2025-12-17 22:35:42,714 - agent.services.image_search - INFO - Searching images for: 黄色
+2025-12-17 22:40:58,820 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:41:07,658 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:41:07,733 - agent.services.paper_manager - INFO - Processing paper: AGRec.pdf
+2025-12-17 22:41:07,958 - agent.services.paper_manager - INFO - Classified as: 推荐算法、大模型、自动机
+2025-12-17 22:41:07,960 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\推荐算法、大模型、自动机\AGRec.pdf
+2025-12-17 22:41:08,490 - agent.services.paper_manager - INFO - Indexed 73 chunks.
+2025-12-17 22:41:35,727 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:41:45,097 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:41:45,170 - agent.services.search_service - INFO - Searching for: 推荐
+2025-12-17 22:42:40,909 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:43:34,146 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:44:15,164 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:44:15,708 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:44:17,736 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:44:22,341 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:44:25,311 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:44:25,458 - agent.services.search_service - INFO - Searching for: 让计算机理解人类语言
+2025-12-17 22:45:44,327 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:45:55,150 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:45:55,307 - agent.services.search_service - INFO - Searching for: 让计算机能够理解、解释和生成人类语言的技术。
+2025-12-17 22:46:22,857 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:46:36,433 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:46:36,589 - agent.services.search_service - INFO - Searching for: 让计算机能够理语言的技术。
+2025-12-17 22:47:09,415 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/all-MiniLM-L6-v2 on cuda
+2025-12-17 22:47:22,585 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-17 22:47:22,734 - agent.services.search_service - INFO - Searching for: 自然语言处理
