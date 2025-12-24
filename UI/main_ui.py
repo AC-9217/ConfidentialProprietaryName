@@ -536,7 +536,7 @@ class MainWindow(QMainWindow):
         root_layout.addWidget(browse_root)
         
         self.batch_topics = QLineEdit()
-        self.batch_topics.setPlaceholderText("主题 (CV, NLP, RL)")
+        self.batch_topics.setPlaceholderText("主题 (可选，留空则自动检测)")
         
         btn_organize = QPushButton("开始整理")
         btn_organize.clicked.connect(self.run_batch_organize)
@@ -589,13 +589,15 @@ class MainWindow(QMainWindow):
         root = self.batch_root_input.text()
         topics_str = self.batch_topics.text()
         
-        if not root or not topics_str:
-             QMessageBox.warning(self, "错误", "必须指定根目录和主题。")
+        if not root:
+             QMessageBox.warning(self, "错误", "必须指定根目录。")
              return
         
-        topics = [t.strip() for t in topics_str.split(",")]
+        topics = [t.strip() for t in topics_str.split(",")] if topics_str.strip() else None
         
         self.manage_log.append(f"正在开始批量整理 {root}...")
+        if not topics:
+            self.manage_log.append("未指定主题，将执行自动聚类...")
         
         def task():
             pm = self.get_paper_manager()
