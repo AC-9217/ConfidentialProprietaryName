@@ -2,6 +2,9 @@ import torch
 from pathlib import Path
 import os
 
+# Set Hugging Face mirror for China access
+os.environ["HF_ENDPOINT"] = "https://hf-mirror.com"
+
 class Config:
     # Paths
     # 项目根目录

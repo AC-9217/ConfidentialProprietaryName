@@ -1,1 +1,61 @@
 2025-12-24 20:31:09,592 - agent.services.paper_manager - INFO - Found 2 PDF files to process.
+2025-12-24 21:08:12,300 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/paraphrase-multilingual-mpnet-base-v2 on cpu
+2025-12-24 21:08:31,863 - main - ERROR - Error executing command: Consistency check failed: file should be of size 9081518 but has size 24296104 (tokenizer.json).
+This is usually due to network issues while downloading the file. Please retry with `force_download=True`.
+Traceback (most recent call last):
+  File "D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\main.py", line 64, in main
+    ss = SearchService()
+  File "D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\agent\services\search_service.py", line 21, in __init__
+    self.text_embedder = text_embedder or TextEmbedder()
+  File "D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\agent\models\text_embedder.py", line 22, in __init__
+    self.model = SentenceTransformer(model_name, device=device)
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\sentence_transformers\SentenceTransformer.py", line 327, in __init__
+    modules, self.module_kwargs = self._load_sbert_model(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\sentence_transformers\SentenceTransformer.py", line 2305, in _load_sbert_model
+    module = module_class.load(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\sentence_transformers\models\Transformer.py", line 366, in load
+    return cls(model_name_or_path=model_name_or_path, **init_kwargs)
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\sentence_transformers\models\Transformer.py", line 103, in __init__
+    self.tokenizer = AutoTokenizer.from_pretrained(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\transformers\models\auto\tokenization_auto.py", line 1175, in from_pretrained
+    return tokenizer_class_fast.from_pretrained(pretrained_model_name_or_path, *inputs, **kwargs)
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\transformers\tokenization_utils_base.py", line 2076, in from_pretrained
+    resolved_vocab_files[file_id] = cached_file(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\transformers\utils\hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\transformers\utils\hub.py", line 567, in cached_files
+    raise e
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\transformers\utils\hub.py", line 479, in cached_files
+    hf_hub_download(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\huggingface_hub\file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\huggingface_hub\file_download.py", line 1168, in _hf_hub_download_to_cache_dir
+    _download_to_tmp_and_move(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\huggingface_hub\file_download.py", line 1735, in _download_to_tmp_and_move
+    http_get(
+  File "D:\fan\anconda\data\envs\exp2\lib\site-packages\huggingface_hub\file_download.py", line 522, in http_get
+    raise EnvironmentError(
+OSError: Consistency check failed: file should be of size 9081518 but has size 24296104 (tokenizer.json).
+This is usually due to network issues while downloading the file. Please retry with `force_download=True`.
+2025-12-24 21:10:36,561 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/paraphrase-multilingual-mpnet-base-v2 on cpu
+2025-12-24 21:13:27,402 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/paraphrase-multilingual-mpnet-base-v2 on cpu
+2025-12-24 21:26:16,430 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-24 21:26:16,765 - agent.services.paper_manager - INFO - Processing paper: CV_Segment_Anything.pdf
+2025-12-24 21:26:39,695 - agent.services.paper_manager - INFO - Classified as: CV
+2025-12-24 21:26:39,697 - agent.services.paper_manager - INFO - Moved to D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\papers\CV\CV_Segment_Anything.pdf
+2025-12-24 21:27:03,028 - agent.services.paper_manager - INFO - Indexed 265 chunks.
+2025-12-24 21:27:59,620 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/paraphrase-multilingual-mpnet-base-v2 on cpu
+2025-12-24 21:28:13,851 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-24 21:28:14,065 - agent.services.search_service - INFO - Searching for: CV
+2025-12-24 21:29:37,166 - agent.models.image_embedder - INFO - Loading Image Embedder: ViT-L-14 (laion2b_s32b_b82k) on cpu
+2025-12-24 21:33:37,077 - agent.models.text_embedder - INFO - Loading Text Embedder: sentence-transformers/paraphrase-multilingual-mpnet-base-v2 on cpu
+2025-12-24 21:33:46,660 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-24 21:33:46,858 - agent.services.search_service - INFO - Searching for: ÊÓ¾õ
+2025-12-24 21:33:57,393 - agent.services.search_service - INFO - Searching for: ¼ÆËã»ú
+2025-12-24 21:34:08,377 - agent.models.image_embedder - INFO - Loading Image Embedder: ViT-L-14 (laion2b_s32b_b82k) on cpu
+2025-12-24 21:37:13,075 - agent.index.vector_store - INFO - Initializing VectorStore at D:\fan\Project\PycharmProject\DuoMoTai\Experiment2\data\index
+2025-12-24 21:37:13,336 - agent.services.image_search - INFO - Found 1 images.
+2025-12-24 21:37:14,682 - agent.services.image_search - INFO - Indexed batch 1
+2025-12-24 21:37:27,020 - agent.services.image_search - INFO - Searching images for: red
