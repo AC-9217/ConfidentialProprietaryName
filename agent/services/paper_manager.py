@@ -124,19 +124,171 @@ class PaperManager:
                 self.vector_store.add_paper_chunks(chunk_ids, chunk_embeddings, chunk_metadatas, chunk_texts)
                 logger.info(f"Indexed {len(chunks)} chunks.")
 
-    def batch_organize(self, root_dir: str, topics: list[str]):
+    def batch_organize(self, root_dir: str, topics: list[str] = None):
         """
         Batch organize all PDFs in a directory.
         批量整理目录中的所有 PDF。
 
         Args:
             root_dir (str): Root directory to scan. 要扫描的根目录。
-            topics (list[str]): List of topics for classification. 用于分类的主题列表。
+            topics (list[str], optional): List of topics for classification. If None, auto-detect. 用于分类的主题列表。如果不提供，则自动检测。
         """
         root = Path(root_dir)
         pdf_files = list(root.glob("**/*.pdf"))
         logger.info(f"Found {len(pdf_files)} PDF files to process.")
         
-        for pdf_file in pdf_files:
-            if pdf_file.exists():
-                self.add_paper(str(pdf_file), topics, move=True, index=True)
+        if not pdf_files:
+            return
+
+        if topics:
+            for pdf_file in pdf_files:
+                if pdf_file.exists():
+                    self.add_paper(str(pdf_file), topics, move=True, index=True)
+        else:
+            self._auto_organize(pdf_files)
+
+    def _auto_organize(self, pdf_files: list[Path]):
+        """
+        Automatically cluster and organize papers.
+        自动聚类并整理论文。
+        """
+        try:
+            from sklearn.cluster import KMeans
+            from sklearn.feature_extraction.text import TfidfVectorizer
+        except ImportError:
+            logger.error("scikit-learn is required for auto-organization. Please install it.")
+            return
+
+        # 1. Parse and Embed
+        docs = [] # {path, text, chunks, embedding}
+        embeddings = []
+        
+        logger.info("Parsing files and generating embeddings for auto-clustering...")
+        for p in pdf_files:
+            if not p.exists(): continue
+            full_text, chunks = PDFParser.parse(str(p))
+            if not full_text: 
+                logger.warning(f"Skipping {p.name}: No text extracted.")
+                continue
+            
+            emb = self._compute_file_embedding(full_text, chunks)
+            docs.append({
+                "path": p,
+                "text": full_text,
+                "chunks": chunks,
+                "embedding": emb
+            })
+            embeddings.append(emb)
+            
+        if not docs:
+            logger.warning("No valid documents found for clustering.")
+            return
+
+        # 2. Cluster
+        num_docs = len(docs)
+        if num_docs < 2:
+            # Too few documents to cluster, put in "General"
+            for doc in docs:
+                self._finalize_paper(doc, "General")
+            return
+
+        # Dynamic cluster count: roughly 1 topic per 3-5 docs, constrained between 2 and 8
+        n_clusters = min(max(2, num_docs // 3), 8)
+        logger.info(f"Clustering {num_docs} papers into {n_clusters} topics...")
+        
+        kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
+        X = np.array(embeddings)
+        labels = kmeans.fit_predict(X)
+        
+        # 3. Label Clusters via TF-IDF
+        cluster_texts = [""] * n_clusters
+        for i, label in enumerate(labels):
+            cluster_texts[label] += " " + docs[i]["text"]
+            
+        vectorizer = TfidfVectorizer(stop_words='english', max_features=100)
+        cluster_names = {}
+        
+        try:
+            # Check if we have enough content
+            if any(len(t.strip()) > 0 for t in cluster_texts):
+                tfidf_matrix = vectorizer.fit_transform(cluster_texts)
+                feature_names = vectorizer.get_feature_names_out()
+                
+                for i in range(n_clusters):
+                    row = tfidf_matrix[i]
+                    # Get indices of top features
+                    row_data = row.toarray()[0]
+                    if row_data.sum() == 0:
+                        cluster_names[i] = f"Topic_{i+1}"
+                        continue
+                        
+                    top_indices = row_data.argsort()[-2:][::-1]
+                    keywords = [feature_names[idx] for idx in top_indices]
+                    # Clean keywords
+                    clean_keywords = [k for k in keywords if k.isalpha()]
+                    if clean_keywords:
+                        topic_name = "_".join(clean_keywords).title()
+                    else:
+                        topic_name = f"Topic_{i+1}"
+                    cluster_names[i] = topic_name
+            else:
+                 for i in range(n_clusters): cluster_names[i] = f"Topic_{i+1}"
+        except Exception as e:
+            logger.warning(f"Keyword extraction failed ({e}), using generic names.")
+            for i in range(n_clusters):
+                cluster_names[i] = f"Topic_{i+1}"
+
+        # 4. Move and Index
+        logger.info("Applying organization...")
+        for i, doc in enumerate(docs):
+            cluster_id = labels[i]
+            topic = cluster_names.get(cluster_id, f"Topic_{cluster_id+1}")
+            self._finalize_paper(doc, topic)
+
+    def _finalize_paper(self, doc, topic):
+        """
+        Helper to move and index a pre-processed paper.
+        """
+        original_path = doc["path"]
+        
+        # Move
+        dest_dir = Config.PAPERS_DIR / topic
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        dest_path = dest_dir / original_path.name
+        
+        final_path = original_path
+        if original_path != dest_path:
+            try:
+                shutil.move(str(original_path), str(dest_path))
+                final_path = dest_path
+                logger.info(f"Moved {original_path.name} to {topic}")
+            except Exception as e:
+                logger.error(f"Failed to move {original_path.name}: {e}")
+            
+        # Index
+        try:
+            file_hash = hashlib.sha256(doc["text"].encode()).hexdigest()
+            metadata = {
+                "path": str(final_path),
+                "filename": final_path.name,
+                "sha256": file_hash,
+                "topic": topic
+            }
+            self.vector_store.add_paper_file(file_hash, doc["embedding"], metadata)
+            
+            if doc["chunks"]:
+                 chunk_texts = [c["text"] for c in doc["chunks"]]
+                 # Re-embed chunks
+                 chunk_embeddings = self.text_embedder.embed_texts(chunk_texts)
+                 chunk_ids = [f"{file_hash}_{i}" for i in range(len(doc["chunks"]))]
+                 chunk_metadatas = []
+                 for i, c in enumerate(doc["chunks"]):
+                    m = c.copy()
+                    del m["text"]
+                    m["path"] = str(final_path)
+                    m["filename"] = final_path.name
+                    chunk_metadatas.append(m)
+                 self.vector_store.add_paper_chunks(chunk_ids, chunk_embeddings, chunk_metadatas, chunk_texts)
+        except Exception as e:
+            logger.error(f"Failed to index {final_path.name}: {e}")
+

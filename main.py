@@ -41,7 +41,7 @@ def main():
     # 批量整理命令
     parser_batch = subparsers.add_parser("batch_organize", help="Batch organize papers in a directory")
     parser_batch.add_argument("--root", required=True, help="Root directory containing papers")
-    parser_batch.add_argument("--topics", required=True, help="Comma-separated list of topics")
+    parser_batch.add_argument("--topics", default=None, help="Comma-separated list of topics (optional, auto-detect if omitted)")
     
     # index_images (New helper)
     # 索引图片命令 (新助手)
@@ -111,7 +111,7 @@ def main():
                 print("No images found.")
 
         elif args.command == "batch_organize":
-            topics_list = [t.strip() for t in args.topics.split(",")]
+            topics_list = [t.strip() for t in args.topics.split(",")] if args.topics else None
             pm = PaperManager()
             pm.batch_organize(args.root, topics_list)
 
