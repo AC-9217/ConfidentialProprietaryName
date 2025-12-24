@@ -19,11 +19,13 @@ class Config:
 
     # Models
     # 文本嵌入模型名称
-    TEXT_MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
+    # 升级为支持多语言且性能更强的模型 (768维)
+    TEXT_MODEL_NAME = "sentence-transformers/paraphrase-multilingual-mpnet-base-v2"
     # OpenCLIP model config
     # 图像嵌入模型配置 (CLIP)
-    IMAGE_MODEL_NAME = "ViT-B-32"
-    IMAGE_MODEL_PRETRAINED = "laion2b_s34b_b79k"
+    # 升级为 Large 模型以利用 RTX 3060 性能 (768维)
+    IMAGE_MODEL_NAME = "ViT-L-14"
+    IMAGE_MODEL_PRETRAINED = "laion2b_s32b_b82k"
 
     # Device
     # 设备选择: 如果有 CUDA 则使用 CUDA，否则使用 CPU
@@ -31,9 +33,10 @@ class Config:
 
     # Indexing
     # 文本分块大小
-    CHUNK_SIZE = 1000
+    # 减小分块大小以提高检索粒度
+    CHUNK_SIZE = 800
     # 文本分块重叠大小
-    CHUNK_OVERLAP = 100
+    CHUNK_OVERLAP = 150
     
     # Chroma
     # 向量数据库集合名称
