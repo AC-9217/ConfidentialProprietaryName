@@ -11,7 +11,7 @@ def create_image_red():
     创建一个红色的测试图片。
     """
     img = Image.new('RGB', (100, 100), color = 'red')
-    img.save("test_image_1.jpg")
+    img.save("./pic/test_image_1.jpg")
     print("Created test_image_1.jpg")
 def create_image_blue():
     """
@@ -19,7 +19,7 @@ def create_image_blue():
     创建一个蓝色的测试图片。
     """
     img = Image.new('RGB', (100, 100), color = 'blue')
-    img.save("test_image_2.jpg")
+    img.save("./pic/test_image_2.jpg")
     print("Created test_image_2.jpg")
 def create_image_green():
     """
@@ -27,7 +27,7 @@ def create_image_green():
     创建一个绿色的测试图片。
     """
     img = Image.new('RGB', (100, 100), color = 'green')
-    img.save("test_image_3.jpg")
+    img.save("./pic/test_image_3.jpg")
     print("Created test_image_3.jpg")
 def create_image_yellow():
     """
@@ -35,7 +35,7 @@ def create_image_yellow():
     创建一个黄色的测试图片。
     """
     img = Image.new('RGB', (100, 100), color = 'yellow')
-    img.save("test_image_4.jpg")
+    img.save("./pic/test_image_4.jpg")
     print("Created test_image_4.jpg")
 
 if __name__ == "__main__":
