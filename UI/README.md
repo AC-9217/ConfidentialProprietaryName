@@ -1,32 +1,26 @@
-# UI User Guide
+# UI 使用指南
 
-This folder contains the Graphical User Interface (GUI) for the Local Multimodal AI Agent.
+此文件夹包含本地多模态 AI 智能助手的图形用户界面 (GUI)。
 
-## Requirements
+## 环境要求
 
 - Python 3.10+
 - PyQt6
-- Project dependencies (installed in `exp2` environment)
 
-## How to Run
+## 如何运行
 
-1. Open a terminal (PowerShell or CMD).
-2. Activate the conda environment:
+1. 打开终端（PowerShell 或 CMD）。
+2. 激活 conda 环境：
    ```bash
    conda activate exp2
    ```
-3. Navigate to the project root directory:
+3. 导航到项目根目录：
    ```bash
    cd d:\fan\Project\PycharmProject\DuoMoTai\Experiment2
    ```
-4. Run the UI script:
+4. 运行 UI 脚本：
    ```bash
    python UI/main_ui.py
    ```
 
-## Features
 
-- **Add Paper**: Select a PDF, assign topics, and optionally move/index it.
-- **Search Paper**: Query your paper database using natural language.
-- **Search Image**: Describe an image to find it in your local library.
-- **Management**: Batch organize folders and index images.
