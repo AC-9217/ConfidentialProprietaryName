@@ -140,30 +140,10 @@ class PaperManager:
         if not pdf_files:
             return
 
-        if topics:
-            for pdf_file in pdf_files:
-                if pdf_file.exists():
-                    self.add_paper(str(pdf_file), topics, move=True, index=True)
-        else:
-            self._auto_organize(pdf_files)
-
-    def _auto_organize(self, pdf_files: list[Path]):
-        """
-        Automatically cluster and organize papers.
-        自动聚类并整理论文。
-        """
-        try:
-            from sklearn.cluster import KMeans
-            from sklearn.feature_extraction.text import TfidfVectorizer
-        except ImportError:
-            logger.error("scikit-learn is required for auto-organization. Please install it.")
-            return
-
-        # 1. Parse and Embed
-        docs = [] # {path, text, chunks, embedding}
-        embeddings = []
-        
-        logger.info("Parsing files and generating embeddings for auto-clustering...")
+        # Pre-process all files to avoid redundant parsing
+        # 预处理所有文件以避免重复解析
+        docs = []
+        logger.info("Parsing files and generating embeddings...")
         for p in pdf_files:
             if not p.exists(): continue
             full_text, chunks = PDFParser.parse(str(p))
@@ -178,24 +158,91 @@ class PaperManager:
                 "chunks": chunks,
                 "embedding": emb
             })
-            embeddings.append(emb)
-            
+
         if not docs:
-            logger.warning("No valid documents found for clustering.")
+            logger.warning("No valid documents found.")
+            return
+
+        if topics:
+            self._classify_and_finalize(docs, topics)
+        else:
+            self._auto_organize_hybrid(docs)
+
+    def _classify_and_finalize(self, docs, topics):
+        """
+        Classify docs using provided topics and finalize.
+        使用提供的主题对文档进行分类并完成处理。
+        """
+        topic_embeddings = self.text_embedder.embed_texts(topics)
+        
+        for doc in docs:
+             file_embedding = doc["embedding"]
+             sims = np.dot(topic_embeddings, file_embedding)
+             best_idx = np.argmax(sims)
+             assigned_topic = topics[best_idx]
+             self._finalize_paper(doc, assigned_topic)
+
+    def _auto_organize_hybrid(self, docs):
+        """
+        Hybrid organization: Prioritize existing topics, then cluster the rest.
+        混合整理：优先考虑现有主题，然后对其余部分进行聚类。
+        """
+        # 1. Check existing topics in data/papers
+        existing_topics = [d.name for d in Config.PAPERS_DIR.iterdir() if d.is_dir() and not d.name.startswith('.')]
+        
+        unassigned_docs = []
+        
+        if existing_topics:
+            logger.info(f"Found existing topics: {existing_topics}")
+            topic_embeddings = self.text_embedder.embed_texts(existing_topics)
+            threshold = 0.35 # Similarity threshold (heuristic) # 相似度阈值（启发式）
+            
+            for doc in docs:
+                file_embedding = doc["embedding"]
+                sims = np.dot(topic_embeddings, file_embedding)
+                best_idx = np.argmax(sims)
+                best_score = sims[best_idx]
+                
+                if best_score > threshold:
+                    assigned_topic = existing_topics[best_idx]
+                    logger.info(f"Matched {doc['path'].name} to existing topic '{assigned_topic}' (Score: {best_score:.2f})")
+                    self._finalize_paper(doc, assigned_topic)
+                else:
+                    unassigned_docs.append(doc)
+        else:
+            unassigned_docs = docs
+
+        # 2. Cluster remaining docs
+        if unassigned_docs:
+            logger.info(f"{len(unassigned_docs)} papers remain unassigned. Proceeding to clustering...")
+            self._cluster_and_finalize(unassigned_docs)
+
+    def _cluster_and_finalize(self, docs):
+        """
+        Cluster papers and generate new topics.
+        对论文进行聚类并生成新主题。
+        """
+        try:
+            from sklearn.cluster import KMeans
+            from sklearn.feature_extraction.text import TfidfVectorizer
+        except ImportError:
+            logger.error("scikit-learn is required for auto-organization. Please install it.")
             return
 
         # 2. Cluster
         num_docs = len(docs)
         if num_docs < 2:
-            # Too few documents to cluster, put in "General"
+            # Too few documents to cluster, put in "General" or "New_Topic"
+            # 文档太少无法聚类，放入 "General" 或 "New_Topic"
             for doc in docs:
                 self._finalize_paper(doc, "General")
             return
 
-        # Dynamic cluster count: roughly 1 topic per 3-5 docs, constrained between 2 and 8
+        # Dynamic cluster count
         n_clusters = min(max(2, num_docs // 3), 8)
         logger.info(f"Clustering {num_docs} papers into {n_clusters} topics...")
         
+        embeddings = [d["embedding"] for d in docs]
         kmeans = KMeans(n_clusters=n_clusters, random_state=42, n_init=10)
         X = np.array(embeddings)
         labels = kmeans.fit_predict(X)
